@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   utils_minishell.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/04/27 15:37:02 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/04/27 15:36:06 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/04/27 15:53:28 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*cd(char *path)
+void	ft_putstr(char *str)
 {
-	int		result_path;
-	char	*cwd;
+	int	i;
 
-	result_path = chdir(path);
-	if (result_path == -1)
+	i = 0;
+	while (str[i])
 	{
-		perror("cd");
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
-	}
-	else
-	{
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
+		write(1, &str[i], 1);
+		i++;
 	}
 }

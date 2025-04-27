@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/04/27 15:37:02 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/04/27 15:29:57 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/04/27 15:53:14 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*cd(char *path)
+void	pwd(void)
 {
-	int		result_path;
 	char	*cwd;
 
-	result_path = chdir(path);
-	if (result_path == -1)
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		perror("cd");
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
+		perror("pwd");
+		free(cwd);
 	}
 	else
 	{
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
+		ft_putstr(cwd);
+		write(1, "\n", 1);
+		free(cwd);
 	}
 }

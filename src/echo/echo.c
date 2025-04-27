@@ -6,23 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 17:03:48 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/04/21 18:07:08 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/04/27 15:35:42 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-}
 
 void	echo(char **tab, int option)
 {
