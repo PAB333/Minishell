@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:58:33 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/04/28 14:15:10 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/04/27 16:05:22 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/04/27 16:26:14 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/minishell.h"
 
-#include <unistd.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-void	ft_putstr(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+void	env(void)
+{
+	
+}
