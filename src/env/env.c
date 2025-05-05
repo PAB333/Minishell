@@ -6,13 +6,13 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 16:05:22 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/04/27 16:26:14 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:46:51 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	env(void)
+void	env(char **envp)
 {
 	
 }
