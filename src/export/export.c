@@ -1,41 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 16:58:33 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/05/12 18:23:40 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/05/12 17:57:04 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/05/12 18:28:46 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/minishell.h"
 
-#include <unistd.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct s_cmd
+void	export(t_env **env)
 {
-	char			**args; 
-	char			*input_file;
-	char			*output_file;
-	int				append;
-	struct s_cmd	*next;
-}	t_cmd;
-
-typedef struct s_env
-{
-	char			*name;
-	char			*value;
-	struct s_env	*next;
-}	t_env;
-
-
-void	ft_putstr(char *str);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	
+}
