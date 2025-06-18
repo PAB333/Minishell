@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/05/05 18:16:03 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/04/21 17:03:48 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/06/18 00:54:10 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*cd(t_cmd *cmd)
+void	ft_echo(t_cmd *cmd)
 {
-	int		result_path;
-	char	*cwd;
+	int	i;
+	int	option;
 
-	result_path = chdir(cmd->args[2]);
-	if (result_path == -1)
+	i = 1;
+	if (cmd->args[i] && ft_strcmp(cmd->args[i], "-n") == 0)
 	{
-		perror("cd");
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
+		i++;
+		option = 1;
 	}
-	else
+	if (!cmd->args[i] && option != 1)
 	{
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
+		write(1, "\n", 1);
+		return ;
 	}
+	while (cmd->args[i])
+	{
+		ft_putstr(cmd->args[i]);
+		if (cmd->args[i + 1])
+			write(1, " ", 1);
+		i++;
+	}
+	if (option != 1)
+		write(1, "\n", 1);
 }
+
+// int	main(int ac, char **av)
+// {
+// 	t_cmd *cmd;
+
+// 	cmd->args = av;
+// 	echo(cmd);
+// }

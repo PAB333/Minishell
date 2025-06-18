@@ -6,7 +6,7 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:58:33 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/05/12 18:23:40 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/18 00:54:33 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,8 @@ typedef struct s_env
 
 void	ft_putstr(char *str);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_strdup(char *source);
+int		ft_atoi(char *str);
+void	ft_env(t_env *envp);
 
 #endif

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 16:05:22 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/05/12 17:48:48 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/04/27 15:29:57 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/06/18 00:56:05 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	env(char **envp)
+void	ft_pwd(void)
 {
-	int	i;
+	char	*cwd;
 
-	i = 0;
-	while (envp[i])
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		ft_putstr(envp[i]);
+		perror("pwd");
+		free(cwd);
+	}
+	else
+	{
+		ft_putstr(cwd);
 		write(1, "\n", 1);
-		i++;
+		free(cwd);
 	}
 }
-
-// int	main(int ac, char **av, char **envp)
-// {
-// 	env(envp);
-// }
