@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/18 17:57:11 by pibreiss         ###   ########.fr       */
+/*   Created: 2025/06/18 17:34:18 by pibreiss          #+#    #+#             */
+/*   Updated: 2025/06/18 18:40:41 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_cd(t_cmd *cmd)
+t_env	*ft_unset(t_env *env, t_cmd *cmd)
 {
-	int		result_path;
-	char	*cwd;
+	int		i;
+	t_env	*current;
+	t_env	*previous;
 
-	result_path = chdir(cmd->args[1]);
-	if (result_path == -1)
+	i = 1;
+	while (cmd->args[i])
 	{
-		perror("cd");
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
+		previous = NULL;
+		current = env;
+		while (current)
 		{
-			perror("cd");
-			free(cwd);
+			if (ft_strcmp(current->name, cmd->args[i]) == 0)
+			{
+				if (previous)
+				 	previous->next = current->next;
+				else
+					env = current->next;
+				free(current->name);
+				free(current->value);
+				free(current);
+			}
+			previous = current;
+			current = current->next;
 		}
-		return (cwd);
+		i++;
 	}
-	else
-	{
-		cwd = getcwd(NULL, 0);
-		if (!cwd)
-		{
-			perror("cd");
-			free(cwd);
-		}
-		return (cwd);
-	}
+	return (env);
 }
