@@ -6,7 +6,7 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/22 19:22:36 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:57:15 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	update_envp(t_env **env, char *old_cwd)
 	}
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->name, "PWD="))
+		if (ft_strcmp(tmp->name, "PWD"))
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(cwd);
 		}
-		else if (ft_strcmp(tmp->name, "OLDPWD="))
+		else if (ft_strcmp(tmp->name, "OLDPWD"))
 		{
 			free(tmp->value);
 			tmp->value = ft_strdup(old_cwd);

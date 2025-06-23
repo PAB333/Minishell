@@ -6,7 +6,7 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:37:29 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/16 18:21:17 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:04:52 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,3 @@ void	ft_exit(t_cmd *cmd)
 		exit(ft_atoi(cmd->args[1]));
 	}
 }
-
-
-// int main(void)
-// {
-//     t_cmd cmd1 = {.args = (char *[]){"exit", NULL}};
-//     t_cmd cmd2 = {.args = (char *[]){"exit", "42", NULL}};
-
-//     printf("Test 1 (exit sans argument):\n");
-//     //ft_exit(&cmd1);
-
-//     printf("Test 2 (exit avec code 42):\n");
-//     ft_exit(&cmd2);;
-
-//     return 0;
-// }
