@@ -6,7 +6,7 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:58:33 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/18 00:54:33 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:12:28 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ int		ft_strcmp(char *s1, char *s2);
 char	*ft_strdup(char *source);
 int		ft_atoi(char *str);
 void	ft_env(t_env *envp);
+void	ft_env_export(t_env *envp);
+char	**ft_split(char *s, char c);
+int		ft_strlen(char *str);
 
 #endif

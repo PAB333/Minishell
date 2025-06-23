@@ -6,13 +6,26 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:04 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/18 00:54:56 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:30:35 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	add_env(t_env **env, char *arg)
+void	free_split(char **split_arg)
+{
+	int	i;
+
+	i = 0;
+	while (split_arg[i])
+	{
+		free(split_arg[i]);
+		i++;
+	}
+	free(split_arg);
+}
+
+void	add_env(t_env **env, char **arg)
 {
 	t_env	*new;
 	t_env	*tmp;
@@ -20,8 +33,11 @@ void	add_env(t_env **env, char *arg)
 	new = malloc(sizeof(t_env));
 	if (!new)
 		return ;
-	new->name = ft_strdup(arg);
-	new->value = NULL;
+	new->name = ft_strdup(arg[0]);
+	if (arg[1])
+		new->value = ft_strdup(arg[1]);
+	else if (!arg[1])
+		new->value = NULL;
 	new->next = NULL;
 	if (*env == NULL)
 	{
@@ -32,48 +48,52 @@ void	add_env(t_env **env, char *arg)
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = new;
+	free_split(arg);
 }
 
-void	update_env(t_env **env, char *arg)
+void	update_env(t_env **env, char **arg)
 {
 	t_env	*tmp;
 
 	tmp = *env;
 	while (tmp->next != NULL)
 	{
-		if (ft_strcmp(tmp->name, arg) == 0)
+		if (ft_strcmp(tmp->name, arg[0]) == 0)
 		{
 			free(tmp->value);
-			tmp->value = ft_strdup(arg);
+			tmp->value = ft_strdup(arg[1]);
 			break ;
 		}
 		tmp = tmp->next;
 	}
+	free_split(arg);
 }
 
 void	ft_export(t_cmd *cmd, t_env **env)
 {
 	int		i;
+	char	**split_arg;
 	t_env	*tmp;
 
 	i = 0;
 	if (cmd->args[1] == NULL)
-		ft_env(env);
+		ft_env_export(*env);
 	else
 	{
 		while (cmd->args[++i])
 		{
+			split_arg = ft_split(cmd->args[i], '=');
 			tmp = *env;
 			while (tmp->next != NULL)
 			{
-				if (ft_strcmp(tmp->name, cmd->args[i]) == 0)
+				if (ft_strcmp(tmp->name, split_arg[0]) == 0)
 					break ;
 				tmp = tmp->next;
 			}
-			if (tmp->next == NULL)
-				add_env(env, cmd->args[i]);
-			else
-				update_env(env, cmd->args[i]);
+			if (tmp->next == NULL && ft_strcmp(tmp->name, split_arg[0]) != 0)
+				add_env(env, split_arg);
+			else if (split_arg[1])
+				update_env(env, split_arg);
 		}
 	}
 }
