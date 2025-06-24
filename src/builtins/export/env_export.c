@@ -6,11 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 22:39:36 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/23 23:23:11 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/24 22:16:48 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	env_size(t_env *env)
 {

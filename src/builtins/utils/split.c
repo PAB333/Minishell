@@ -6,11 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 23:45:38 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/24 00:14:55 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/24 22:16:17 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {

@@ -6,11 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 06:56:42 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/24 17:53:28 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/25 01:38:48 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	update_envp(t_env **env, char *old_cwd)
 {
@@ -52,14 +52,14 @@ char	*find_home(t_env **env)
 		if (ft_strcmp(tmp->name, "HOME") == 0)
 		{
 			path = ft_strdup(tmp->value);
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}
 	return (path);
 }
 
-void	ft_cd(t_cmd *cmd, t_env **env)
+void	ft_cd_exec(t_cmd *cmd, t_env **env)
 {
 	int		result_path;
 	char	*path;
@@ -85,4 +85,11 @@ void	ft_cd(t_cmd *cmd, t_env **env)
 		update_envp(env, old_cwd);
 	free(old_cwd);
 	free(path);
+}
+
+void	ft_cd(t_cmd *cmd, t_env **env)
+{
+	if (count_arg(cmd->args) > 2)
+		return ;
+	ft_cd_exec(cmd, env);
 }

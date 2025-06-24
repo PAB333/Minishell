@@ -6,11 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 15:36:06 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/23 18:04:36 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/24 22:16:26 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 int	ft_strlen(char *str)
 {

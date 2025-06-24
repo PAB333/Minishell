@@ -6,11 +6,11 @@
 /*   By: pibreiss <pibreiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:57:04 by pibreiss          #+#    #+#             */
-/*   Updated: 2025/06/24 00:30:35 by pibreiss         ###   ########.fr       */
+/*   Updated: 2025/06/25 01:38:18 by pibreiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void	free_split(char **split_arg)
 {
@@ -69,31 +69,44 @@ void	update_env(t_env **env, char **arg)
 	free_split(arg);
 }
 
-void	ft_export(t_cmd *cmd, t_env **env)
+void	ft_export_exec(char *arg, t_env **env)
 {
-	int		i;
 	char	**split_arg;
 	t_env	*tmp;
 
-	i = 0;
+	split_arg = ft_split(arg, '=');
+	tmp = *env;
+	while (tmp->next != NULL)
+	{
+		if (ft_strcmp(tmp->name, split_arg[0]) == 0)
+			break ;
+		tmp = tmp->next;
+	}
+	if (tmp->next == NULL && ft_strcmp(tmp->name, split_arg[0]) != 0)
+		add_env(env, split_arg);
+	else if (split_arg[1])
+		update_env(env, split_arg);
+}
+
+void	ft_export(t_cmd *cmd, t_env **env)
+{
+	int	i;
+
+	i = 1;
 	if (cmd->args[1] == NULL)
 		ft_env_export(*env);
 	else
 	{
-		while (cmd->args[++i])
+		while (cmd->args[i])
 		{
-			split_arg = ft_split(cmd->args[i], '=');
-			tmp = *env;
-			while (tmp->next != NULL)
+			if (!((cmd->args[i][0] >= 'a' && cmd->args[i][0] <= 'z')
+				|| (cmd->args[i][0] >= 'A' && cmd->args[i][0] <= 'Z')))
 			{
-				if (ft_strcmp(tmp->name, split_arg[0]) == 0)
-					break ;
-				tmp = tmp->next;
+				write(2, "export : not a valid identifier\n", 32);
 			}
-			if (tmp->next == NULL && ft_strcmp(tmp->name, split_arg[0]) != 0)
-				add_env(env, split_arg);
-			else if (split_arg[1])
-				update_env(env, split_arg);
+			else
+				ft_export_exec(cmd->args[i], env);
+			i++;
 		}
 	}
 }
